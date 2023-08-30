@@ -84,15 +84,28 @@
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/dist",
+              "src/fonts",
+              "src/js",
+              "src/libs",
+              "src/scss",
+              "src/tasks"
+
             ],
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/build-config.js",
+              "src/gulpfile.js"
+            ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "95387398-0381-4915-88ba-4be65c88f90e"
   }
 }
