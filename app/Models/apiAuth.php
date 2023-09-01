@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class apiAuth extends Model
 {
+    protected $fillable=[
+        'apiKey',
+        'appName'
+    ];
     use HasFactory;
 }
