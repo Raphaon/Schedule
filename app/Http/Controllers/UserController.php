@@ -33,12 +33,14 @@ class UserController extends Controller
     public function show($id)
     {
         $user=new User();
+        $status='';
         try {
             $user=User::findorFail($id);
         } catch (\Throwable $th) {
+            $status=$th;
             $notification = 'Introuvable';
         }
-        return response()->json([$user,$th]);
+        return response()->json([$user,$status]);
     }
     public function update(Request $request ,$id)
     {
