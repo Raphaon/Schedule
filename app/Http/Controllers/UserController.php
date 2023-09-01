@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\EventListener\ResponseListener;
 
 class UserController extends Controller
 {
@@ -29,9 +30,14 @@ class UserController extends Controller
         return response()->json($users);
     }
 
-    public function show()
+    public function show($id)
     {
-
+        try {
+            $user=User::findorFail($id);
+        } catch (\Throwable $th) {
+            $notification = 'echec';
+        }
+        return response()->json([$user,$notification]);
     }
     public function update(Request $request ,$id)
     {
