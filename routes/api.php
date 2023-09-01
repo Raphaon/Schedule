@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 //acceder a toute les routes par /api/{route ecrite}
 Route::prefix('user')->group(function(){
-    Route::middleware(['read'])->get('/get-user/{id}',[UserControlller::class,'show']);
+    Route::get('/get-user/{id}',[UserControlller::class,'show']);
     Route::middleware(['all'])->get('/delete-user',[UserController::class,'delete']);
     Route::middleware(['read'])->get('/store-user',[UserController::class,'store']);
     Route::middleware(['read'])->get('/show-user',[UserController::class,'show']);

@@ -15,15 +15,15 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(userGroup::class);
-            $table->string('firstName');
-            $table->string('lastName');
-            $table->string('phoneNumber');
-            $table->string('location');
-            $table->string('zip');
+            $table->string('firstName')->nullable();
+            $table->string('lastName')->nullable();
+            $table->string('phoneNumber')->nullable();
+            $table->string('location')->nullable();
+            $table->string('zip')->nullable();
             $table->string('country')->default('Cameroon');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->timestamp('email_verified_at')->nullable()->nullable();
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
