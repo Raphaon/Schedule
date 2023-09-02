@@ -8,7 +8,8 @@ use Symfony\Component\HttpKernel\EventListener\ResponseListener;
 
 class UserController extends Controller
 {
-        /**
+
+    /**
      * @OA\Get(
      *      path="/user/get-user",
      *      operationId="getUserList",
@@ -138,7 +139,7 @@ class UserController extends Controller
         }
         return response()->json([$status]);
     }
-
+   
     public function show($id)
     {
         $user=new User();

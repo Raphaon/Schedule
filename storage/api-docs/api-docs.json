@@ -19,6 +19,170 @@
         }
     ],
     "paths": {
+        "/access/": {
+            "get": {
+                "tags": [
+                    "Access"
+                ],
+                "summary": "Get list of access",
+                "description": "Returns list of access",
+                "operationId": "getaccessList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/access/{id}": {
+            "get": {
+                "tags": [
+                    "Access"
+                ],
+                "summary": "Get access information",
+                "description": "Returns access data",
+                "operationId": "9a7db369fddca170281321a6f7d19499",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "access id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/access/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Access"
+                ],
+                "summary": "Delete existing access",
+                "description": "Deletes a record and returns no content",
+                "operationId": "f24c84619d66e780ce2b95d0c01299ec",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "access id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/access/save": {
+            "post": {
+                "tags": [
+                    "Access"
+                ],
+                "summary": "Store new access",
+                "description": "Returns access data",
+                "operationId": "c4a4422cd198a3d183664f3e785a737d",
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/access/update/{id}": {
+            "put": {
+                "tags": [
+                    "Access"
+                ],
+                "summary": "Update existing access",
+                "description": "Returns updated access data",
+                "operationId": "bbd0c312cc40eced0d318f342c8eb282",
+                "parameters": [
+                    {
+                        "name": "sccessName",
+                        "in": "path",
+                        "description": "access name: you should give the access name to update it",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "/user/get-user/{id}": {
             "get": {
                 "summary": "Description de votre route",
@@ -43,10 +207,78 @@
                 }
             }
         },
-        "/destroy/{id}": {
+        "/update/{id}": {
+            "put": {
+                "tags": [
+                    "Authentification"
+                ],
+                "summary": "Update existing project",
+                "description": "Returns updated project data",
+                "operationId": "updateProject",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Project id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "post": {
+                "tags": [
+                    "Authentification"
+                ],
+                "summary": "Store new project",
+                "description": "Returns project data",
+                "operationId": "26ed056009a8448597ef9698905dfd59",
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/user/delete-use/{id}": {
             "delete": {
                 "tags": [
-                    "Authentication"
+                    "Authentification"
                 ],
                 "summary": "Delete existing project",
                 "description": "Deletes a record and returns no content",
@@ -83,14 +315,79 @@
                 }
             }
         },
-        "/projects": {
+        "/register": {
+            "post": {
+                "tags": [
+                    "Authentification"
+                ],
+                "summary": "Store new project",
+                "description": "Returns project data",
+                "operationId": "store",
+                "parameters": [
+                    {
+                        "name": "lastName",
+                        "in": "path",
+                        "description": "user Name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "path",
+                        "description": "user password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "description": "user email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "firstName",
+                        "in": "path",
+                        "description": "user name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/permissions": {
             "get": {
                 "tags": [
                     "Permission"
                 ],
-                "summary": "Get list of projects",
-                "description": "Returns list of projects",
-                "operationId": "getProjectsList",
+                "summary": "Get list of permissions",
+                "description": "Returns list of permissions",
+                "operationId": "getpermissionsList",
                 "responses": {
                     "200": {
                         "description": "Successful operation"
@@ -107,9 +404,9 @@
                 "tags": [
                     "Permission"
                 ],
-                "summary": "Store new project",
-                "description": "Returns project data",
-                "operationId": "storeProject",
+                "summary": "Store new permission",
+                "description": "Returns permission data",
+                "operationId": "storepermission",
                 "requestBody": {
                     "required": true
                 },
@@ -125,6 +422,122 @@
                     },
                     "403": {
                         "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/permission/{id}": {
+            "get": {
+                "tags": [
+                    "Permission"
+                ],
+                "summary": "Get permission information",
+                "description": "Returns permission data",
+                "operationId": "4cb355e0271c8c684ca6f5f9a6a973c6",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "permission id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/permission/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Permission"
+                ],
+                "summary": "Delete existing permission",
+                "description": "Deletes a record and returns no content",
+                "operationId": "78787452a6e9560304171ed04aa0f43e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "permission id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/permission/update/{id}": {
+            "put": {
+                "tags": [
+                    "Permission"
+                ],
+                "summary": "Update existing permission",
+                "description": "Returns updated permission data",
+                "operationId": "079e22a25ff2fc073436af1c6cea814d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "permission id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
                     }
                 }
             }
@@ -230,6 +643,170 @@
                         "name": "id",
                         "in": "path",
                         "description": "user id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/user-group/": {
+            "get": {
+                "tags": [
+                    "userGroup"
+                ],
+                "summary": "Get list of userGroup",
+                "description": "Returns list of userGroup",
+                "operationId": "getuserGroupList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/user-group/{id}": {
+            "get": {
+                "tags": [
+                    "userGroup"
+                ],
+                "summary": "Get userGroup information",
+                "description": "Returns userGroup data",
+                "operationId": "222f282224f142d912aa25022b66a93c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "userGroup id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/user-group/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "userGroup"
+                ],
+                "summary": "Delete existing userGroup",
+                "description": "Deletes a record and returns no content",
+                "operationId": "ca1a0b0b15056ea948efc6a7fcfc0b1f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "userGroup id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/user-group/save": {
+            "post": {
+                "tags": [
+                    "userGroup"
+                ],
+                "summary": "Store new userGroup",
+                "description": "Returns userGroup data",
+                "operationId": "c3384034e41be7a25979495eaf1e0f24",
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/user-group/update/{id}": {
+            "put": {
+                "tags": [
+                    "userGroup"
+                ],
+                "summary": "Update existing userGroup",
+                "description": "Returns updated userGroup data",
+                "operationId": "c0d37722dea59c600cdfb88c6cab51fc",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "userGroup id",
                         "required": true,
                         "schema": {
                             "type": "integer"

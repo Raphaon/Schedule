@@ -36,23 +36,26 @@ Route::prefix('user')->group(function(){
 
 Route::controller(UserGroupController::class)->prefix('user-group')->group(function(){
     Route::post('save','store');
-    Route::get('list','index');
+    Route::get('/','index');
+    Route::get('/{id}','show');
     Route::put('update/{id}','update');
-    Route::put('delete/{id}','delete');
+    Route::delete('delete/{id}','delete');
 });
 
 Route::controller(PermissionsController::class)->prefix('permission')->group(function(){
     Route::post('save','store');
-    Route::get('list','index');
+    Route::post('show/{id}','store');
+    Route::get('/','index');
     Route::put('update/{id}','update');
     Route::put('delete/{id}','delete');
 });
 
 Route::controller(AccessController::class)->prefix('access')->group(function(){
     Route::post('save','store');
-    Route::get('list','index');
+    Route::get('/{id}','show');
+    Route::get('/','index');
     Route::put('update/{id}','update');
-    Route::put('delete/{id}','delete');
+    Route::delete('delete/{id}','delete');
 });
 Route::middleware(['auth:sanctum'])->group(function(){
     Route::get('/user', function (Request $request) {

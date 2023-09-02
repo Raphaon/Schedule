@@ -11,11 +11,11 @@ class PermissionsController extends Controller
 {
     /**
      * @OA\Get(
-     *      path="/projects",
-     *      operationId="getProjectsList",
+     *      path="/permissions",
+     *      operationId="getpermissionsList",
      *      tags={"Permission"},
-     *      summary="Get list of projects",
-     *      description="Returns list of projects",
+     *      summary="Get list of permissions",
+     *      description="Returns list of permissions",
      * @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -40,6 +40,84 @@ class PermissionsController extends Controller
         return response()->json([$groups,'status'=>200],200);
 
     }
+     /**
+     * @OA\Get(
+     *      path="/permission/{id}",
+     *      tags={"Permission"},
+     *      summary="Get permission information",
+     *      description="Returns permission data",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="permission id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     * )
+     */
+    public function show($id)
+    {
+        try {
+            $permission=permissions::findorFail();
+            return response()->json(['status'=>200,$permission,'messages'=>'done']);
+        } catch (Exception $e) {
+             $errors=['Not found'];
+            return response()->json($errors,404);
+        }
+
+    }
+      /**
+     * @OA\Delete(
+     *      path="/permission/delete/{id}",
+     *      tags={"Permission"},
+     *      summary="Delete existing permission",
+     *      description="Deletes a record and returns no content",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="permission id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=204,
+     *          description="Successful operation",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found"
+     *      )
+     * )
+     */
     public function delete ($id)
     {
         try {
@@ -56,11 +134,11 @@ class PermissionsController extends Controller
 //fonction d'enregistrement des
  /**
      * @OA\Post(
-     *      path="/projects",
-     *      operationId="storeProject",
+     *      path="/permissions",
+     *      operationId="storepermission",
      *      tags={"Permission"},
-     *      summary="Store new project",
-     *      description="Returns project data",
+     *      summary="Store new permission",
+     *      description="Returns permission data",
      *      @OA\RequestBody(
      *          required=true,
      *      ),
@@ -121,6 +199,46 @@ class PermissionsController extends Controller
         }
     }
 
+    /**
+     * @OA\Put(
+     *      path="/permission/update/{id}",
+     *      tags={"Permission"},
+     *      summary="Update existing permission",
+     *      description="Returns updated permission data",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="permission id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *      ),
+     *      @OA\Response(
+     *          response=202,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Resource Not Found"
+     *      )
+     * )
+     */
     public function update(Request $request ,$id)
     {
         $validator= Validator::make($request->all(),
