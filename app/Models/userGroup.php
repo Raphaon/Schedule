@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class userGroup extends Model
 {
+    protected $fillable =[
+        'intitule',
+        'isDelete'
+    ];
     use HasFactory;
 
     public function user():HasMany

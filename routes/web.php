@@ -18,14 +18,6 @@ Route::get('/', function () {
     return ['Laravel' => app()->version()];
 });
 
-Route::prefix('user')->group(function(){
-    Route::get('/get-user/{id}',[UserController::class,'show']);
-    Route::middleware(['all'])->get('/delete-user',[UserController::class,'delete']);
-    Route::middleware(['read'])->get('/store-user',[UserController::class,'store']);
-    Route::middleware(['read'])->get('/show-user',[UserController::class,'show']);
-    Route::middleware(['whrite'])->get('/update-user',[UserController::class,'update ']);
-});
-
-
 
 require __DIR__.'/auth.php';
+require __Dir__.'/api.php';

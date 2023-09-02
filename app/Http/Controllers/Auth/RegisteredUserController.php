@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Validation\Rules;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
+use Spatie\FlareClient\Http\Response;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Validator;
 
 class RegisteredUserController extends Controller
 {
@@ -18,23 +19,47 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): Response
+    public function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
+        $validator= Validator::make($request->all(),
+            [
+            'firstName' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:'.User::class,
+            'password' => ['required', Rules\Password::defaults()],
+            ]);
+        if($validator->fails())
+        {
+            return response()->json([
+                'status'=>422,
+                'errors'=>$validator->messages()
+            ],422);
+        }else
+        {
+            $user=User::create([
+            'firstName' => $request->firstName,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ]);
-
-        event(new Registered($user));
-        Auth::login($user);
-
-        return response()->noContent();
+            ]);
+            if($user)
+            {
+                event(new Registered($user));
+                Auth::login($user);
+                // dd(Auth::user());
+                return response()->json(
+                    [
+                        'statut'=>200,
+                        'message'=>'done'
+                    ]
+                    );
+            }else
+            {
+                return response()->json(
+                    [
+                        'statut'=>500,
+                        'message'=>'done'
+                    ]
+                    );
+            }
+        }
     }
 }

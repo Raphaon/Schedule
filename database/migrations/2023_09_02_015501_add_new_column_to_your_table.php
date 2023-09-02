@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('access', function (Blueprint $table) {
-            $table->id();
-            $table->string('accessType')->default(true);
-            $table->string('isDelete')->default('0');
-            $table->timestamps();
+        Schema::table('your', function (Blueprint $table) {
+            //
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('access');
+        Schema::table('your', function (Blueprint $table) {
+            //
+        });
     }
 };

@@ -9,6 +9,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class access extends Model
 {
     use HasFactory;
+    protected $table='access';
+    protected $fillable =[
+        'isDelete',
+        'accessType'
+    ];
+    // protected
     public function permissions():BelongsToMany
     {
         return $this->belongsToMany(permissions::class,'permissions_access');

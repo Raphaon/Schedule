@@ -10,24 +10,48 @@ class UserController extends Controller
 {
     public function index()
     {
-
+        $users=User::all();
+        return response()->json($users);
     }
     public function delete($id)
     {
         try {
             $user=User::findorFail($id);
-            $user->delete();
+            $user->update([
+                'isDelete'=>'1',
+            ]);
+            $user->save();
             $notification='succes';
         } catch (\Throwable $th) {
-            $notification='echec';
+            $notification=$th;
         }
-        return response()->json([$notification]);
+        return response()->json([$notification,$user]);
     }
 
-    public function store()
+
+    public function store(Request $request)
     {
-        $users=User::all();
-        return response()->json($users);
+        $status=[];
+        try {
+            $request->validate([
+
+                'email'=>['email'],
+
+            ]);
+            $user = new User();
+            $user->lastName=$request->lastNAme;
+            $user->firstName=$request->firstName;
+            $user->email=$request->email;
+            $user->zip=$request->zip;
+            $user->password= $request->password ;
+            $user->country = $request->country;
+            $user->phoneNumber =$request->phoneNumber;
+            $user->location =$request->location;
+            $status='done';
+        } catch (\Throwable $th) {
+            $status= $th;
+        }
+        return response()->json([$status]);
     }
 
     public function show($id)
@@ -42,25 +66,34 @@ class UserController extends Controller
         }
         return response()->json([$user,$status]);
     }
+
     public function update(Request $request ,$id)
     {
+        $status='done';
         try {
             $request->validate([
-                'firstName'=>['string'],
-                // 'passWord'=>['string','min:6'],
                 'lastName'=>['string'],
+                'firstName'=>['string'],
+                'zip'=>[],
+                'password'=>[],
+                'country'=>[],
+                'phoneNumber'=>[],
+                'location'=>[],
+
             ]);
 
             $user =User::findorFail($id);
-            $user->update([
-                'token' => ['required'],
-                'firstName'=>$request->firstName,
-                'lastName'=>$request->lastName,
-                // 'email'=>$request->emai,
-                // 'firstName'=>$request->firstName,
-            ]);
+            $user->lastName=$request->lastNAme;
+            $user->firstName=$request->firstName;
+            $user->zip=$request->zip;
+            $user->country = $request->country;
+            $user->phoneNumber =$request->phoneNumber;
+            $user->location =$request->location;
+            $user->update();
         } catch (\Throwable $th) {
-            //throw $th;
+            $status=$th ;
+            throw $status;
         }
+        return response()->json($status);
     }
 }

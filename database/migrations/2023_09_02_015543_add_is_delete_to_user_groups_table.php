@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('access', function (Blueprint $table) {
-            $table->id();
-            $table->string('accessType')->default(true);
+        Schema::table('user_groups', function (Blueprint $table) {
             $table->string('isDelete')->default('0');
-            $table->timestamps();
+
         });
     }
 
@@ -24,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('access');
+        Schema::table('user_groups', function (Blueprint $table) {
+            $table->string('isDelete');
+        });
     }
 };
