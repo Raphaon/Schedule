@@ -1,17 +1,57 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Api;
 
-use App\Models\User;
-use Illuminate\Support\Str;
+use App\Http\Controllers\Controller as C;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Validation\Rules;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\Auth\LoginRequest;
-use Illuminate\Support\Facades\Validator;
- /**
+/**
+     * @OA\Info(
+     *      version="1.0.0",
+     *      title="Schedule",
+     *      description="Documentation de l'API Schedule",
+     *      @OA\Contact(
+     *          email="wwwmbassiloic@gmail.com"
+     *      ),
+     * @OA\License(
+     *          name="Apache 2.0",
+     *          url="http://www.apache.org/licenses/LICENSE-2.0.html"
+     *      )
+     * )
+     *
+     * @OA\Server(
+     *      url=L5_SWAGGER_CONST_HOST,
+     *      description="API "
+     * )
+
+     *
+     * @OA\Tag(
+     *     name="Schedule",
+     *     description="API Endpoints of Authentication"
+     * )
+     *
+      * @OA\Get(
+ *     path="/user/get-user/{id}",
+ *     summary="Description de votre route",
+ *     @OA\Parameter(
+ *         name="id",
+ *         in="path",
+ *         description="ID de l'élément",
+ *         required=true,
+ *         @OA\Schema(type="integer")
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="Réponse réussie"
+ *     ),
+ *     @OA\Response(
+ *         response=404,
+ *         description="Non trouvé"
+ *     )
+ * )
+     */
+class Controller extends C
+{
+     /**
      * @OA\Get(
      *      path="/user",
      *      operationId="getAuthenticationList",
@@ -212,60 +252,4 @@ use Illuminate\Support\Facades\Validator;
      *      )
      * )
      */
-class AuthenticatedSessionController extends Controller
-{
-    /**
-     * Handle an incoming authentication request.
-     */
-    public function store(Request $request)
-    {
-        $validator= Validator::make($request->all(),
-        [
-        'email' => 'required|string|email|max:255|exists:'.User::class,
-        'password' => ['required', Rules\Password::defaults()],
-        ]);
-        if($validator->fails())
-        {
-            return response()->json([
-                'status'=>422,
-                'errors'=>$validator->messages()
-            ],422);
-        }
-        else{
-            if(Auth::attempt($request->only('email', 'password')))
-            {
-                $token = Str::transliterate(Str::lower($request->input('email')).'|'.$request->ip());
-                $token = auth()->user()->createToken('cle')->plainTextToken;
-                return response()->json([
-                    'token'=>$token ,
-                    'status'=>200,
-                    'user'=>auth()->user()],200);
-            }else{
-                return response()->json([
-                    'statut'=>422,
-                    'errors'=>'informstions non valides',
-                ]);
-            }
-        }
-
-        // $request->authenticate();
-
-        // $request->session()->regenerate();
-
-        return response()->noContent();
-    }
-
-    /**
-     * Destroy an authenticated session.
-     */
-    public function destroy(Request $request): Response
-    {
-        Auth::guard('web')->logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return response()->noContent();
-    }
 }

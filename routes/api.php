@@ -31,7 +31,7 @@ Route::prefix('user')->group(function(){
     Route::middleware(['read'])->get('/store-user',[UserController::class,'store']);
     // Route::get();
     Route::middleware(['read'])->get('/show-user',[UserController::class,'show']);
-    Route::middleware(['whrite'])->get('/update-user',[UserController::class,'update ']);
+    Route::middleware(['whrite'])->put('/update-user/{id}',[UserController::class,'update ']);
 });
 
 Route::controller(UserGroupController::class)->prefix('user-group')->group(function(){

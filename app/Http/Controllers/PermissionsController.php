@@ -9,6 +9,27 @@ use Illuminate\Support\Facades\Validator;
 
 class PermissionsController extends Controller
 {
+    /**
+     * @OA\Get(
+     *      path="/projects",
+     *      operationId="getProjectsList",
+     *      tags={"Permission"},
+     *      summary="Get list of projects",
+     *      description="Returns list of projects",
+     * @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     * @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     * @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *     )
+     */
     public function index()
     {
         $groups=permissions::all();
@@ -33,7 +54,34 @@ class PermissionsController extends Controller
         return response()->json(['status'=>200,$permissions,'messages'=>'done']);
     }
 //fonction d'enregistrement des
-
+ /**
+     * @OA\Post(
+     *      path="/projects",
+     *      operationId="storeProject",
+     *      tags={"Permission"},
+     *      summary="Store new project",
+     *      description="Returns project data",
+     *      @OA\RequestBody(
+     *          required=true,
+     *      ),
+     * @OA\Response(
+     *          response=201,
+     *          description="Successful operation",
+     *       ),
+     * @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     * @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     * @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     * )
+     */
     public function store (Request $request)
     {
         $validator= Validator::make($request->all(),
