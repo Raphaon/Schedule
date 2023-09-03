@@ -21,8 +21,9 @@ use App\Http\Controllers\UserGroupController;
 |
 */
 // Authentification de l'utilisateur
-Route::post('/register', [RegisteredUserController::class, 'store']);
-Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+Route::post('/register', [RegisteredUserController::class, 'store'])->name('register    ');
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']);
 //acceder a toute les routes par /api/{route ecrite}
 Route::prefix('user')->group(function(){
     Route::get('/get-user/{id}',[UserController::class,'show']);
