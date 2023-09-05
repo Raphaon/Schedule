@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Api\Auth\UserController as AuthUserController;
 use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\UserGroupController;
+use App\Models\Images;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +51,12 @@ Route::controller(PermissionsController::class)->prefix('permission')->group(fun
     Route::put('update/{id}','update');
     Route::put('delete/{id}','delete');
 });
-
+Route::controller(Images::class)->prefix('image')->group(function(){
+    Route::post('/upload');
+    Route::post('/uploadMany');
+    Route::delete('/delete');
+    Route::delete('/deleteMany');
+});
 Route::controller(AccessController::class)->prefix('access')->group(function(){
     Route::post('save','store');
     Route::get('/{id}','show');

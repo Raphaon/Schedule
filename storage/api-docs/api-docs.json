@@ -380,6 +380,140 @@
                 }
             }
         },
+        "/image/uploadMany": {
+            "post": {
+                "tags": [
+                    "Images"
+                ],
+                "summary": "Store Many Images",
+                "description": "Returns permission data",
+                "operationId": "2a7b97ad922b8b64c904833e82c3e708",
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/image/upload": {
+            "post": {
+                "tags": [
+                    "Images"
+                ],
+                "summary": "Store new permission",
+                "description": "Returns permission data",
+                "operationId": "9c6e33223a5d6024ca9880220757acf1",
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/image/deleteMany": {
+            "delete": {
+                "tags": [
+                    "Images"
+                ],
+                "summary": "Delete existing permission",
+                "description": "Deletes a record and returns no content",
+                "operationId": "e4b15ec2fe7b1f287fd1fbbddcab86c4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "permission id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/image/delete": {
+            "delete": {
+                "tags": [
+                    "Images"
+                ],
+                "summary": "Delete existing images",
+                "description": "Deletes a record and returns no content",
+                "operationId": "9a6fde2822385c074b010a876108dbcf",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "permission id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "/permissions": {
             "get": {
                 "tags": [
