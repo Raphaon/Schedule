@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Branch;
 use App\Models\Images;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -96,16 +97,40 @@ class ImagesController extends Controller
             $request->file('image')->move(public_path('storage/uploads/users'),$imageName);
             Images::create([
                 'path' =>'uploads/produits' .  $imageName,
-                'users_id'=>auth()->user()->id,
+                // 'users_id'=>auth()->user()->id,
+                'user_id'=>1,
             ]);
             return response()->json([
-                'statut'=>422,
-                'errors'=>'informstions non valides',
+                'statut'=>204,
+                'errors'=>'Done',
             ]);
         }
+    }
 
-
-
+    public function logo(Request $request,$id)
+    {
+        $validator= Validator::make($request->all(),
+        [
+        'logo' => 'required|image|mimes:jpeg,png|max:5120|',
+        ]);
+        if($validator->fails())
+        {
+            return response()->json([
+                'status'=>422,
+                'errors'=>$validator->messages()
+            ],422);
+        }
+        else{
+            $imageName=uniqid().'.'.$request->file('logo')->getClientOriginalExtension();
+            $request->file('logo')->move(public_path('storage/uploads/users/branch'),$imageName);
+            Branch::find($id)->update([
+                'logo' => $request->logo,
+            ]);
+            return response()->json([
+                'statut'=>204,
+                'errors'=>'Done',
+            ]);
+        }
     }
 
           /**
