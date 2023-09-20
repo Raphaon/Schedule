@@ -96,11 +96,12 @@ class ImagesController extends Controller
             $request->file('image')->move(public_path('storage/uploads/users'),$imageName);
             Images::create([
                 'path' =>'uploads/produits' .  $imageName,
-                'users_id'=>auth()->user()->id,
+                // 'users_id'=>auth()->user()->id,
+                'user_id'=>1,
             ]);
             return response()->json([
-                'statut'=>422,
-                'errors'=>'informstions non valides',
+                'statut'=>204,
+                'errors'=>'Done',
             ]);
         }
 

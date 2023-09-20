@@ -133,8 +133,8 @@ class AuthenticatedSessionController extends Controller
     {
         $validator= Validator::make($request->all(),
         [
-        'email' => 'required|string|email|max:255|exists:'.User::class,
-        'password' => ['required', Rules\Password::defaults()],
+        'email' => 'required|string|',
+        'password' => ['required'],
         ]);
         if($validator->fails())
         {
@@ -172,7 +172,7 @@ class AuthenticatedSessionController extends Controller
 
     public function destroy(Request $request){
        Auth::user()->token()->delete();
-        return response()->json(['status'=>200,'message'=>"Deconnexion reuissit"],200);
+        return response()->json(['status'=>200,'message'=>"Deconnexion reuissie"],200);
     }
      /**
      * @OA\Delete(
