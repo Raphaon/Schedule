@@ -76,7 +76,7 @@ class PermissionsController extends Controller
     public function show($id)
     {
         try {
-            $permission=permissions::findorFail();
+            $permission=permissions::findorFail($id);
             return response()->json(['status'=>200,$permission,'messages'=>'done']);
         } catch (Exception $e) {
              $errors=['Not found'];

@@ -183,6 +183,217 @@
                 }
             }
         },
+        "/acts": {
+            "get": {
+                "tags": [
+                    "acts"
+                ],
+                "summary": "Get list of acts",
+                "description": "Returns list of acts",
+                "operationId": "getactsList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/acts/save": {
+            "post": {
+                "tags": [
+                    "acts"
+                ],
+                "summary": "Store new acts",
+                "description": "Returns acts data",
+                "operationId": "e455308532bfec4b4fa09b8b6e72ac51",
+                "parameters": [
+                    {
+                        "name": "actsName",
+                        "in": "path",
+                        "description": "access name: you should give the access name to update it",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "abreviation",
+                        "in": "path",
+                        "description": "access name: you should give the access name to update it",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "price",
+                        "in": "path",
+                        "description": "access name: you should give the access name to update it",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/acts/{id}": {
+            "get": {
+                "tags": [
+                    "acts"
+                ],
+                "summary": "Get acts information",
+                "description": "Returns acts data",
+                "operationId": "38ef37bacae955d4d71987618a001151",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "acts id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/acts/update/{id}": {
+            "put": {
+                "tags": [
+                    "acts"
+                ],
+                "summary": "Update existing acts",
+                "description": "Returns updated acts data",
+                "operationId": "31d4acca78f107ce55c0c1ab86e6aedf",
+                "parameters": [
+                    {
+                        "name": "actsName",
+                        "in": "path",
+                        "description": "access name: you should give the access name to update it",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "price",
+                        "in": "path",
+                        "description": "access name: you should give the access name to update it",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "price",
+                        "in": "path",
+                        "description": "access name: you should give the access name to update it",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/acts/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "acts"
+                ],
+                "summary": "Delete existing acts",
+                "description": "Deletes a record and returns no content",
+                "operationId": "c8d4b7e3a3e28f56a6be3d625d884bea",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "acts id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "/user/get-user/{id}": {
             "get": {
                 "summary": "Description de votre route",
@@ -376,6 +587,506 @@
                     },
                     "403": {
                         "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/branch": {
+            "get": {
+                "tags": [
+                    "branch"
+                ],
+                "summary": "Get list of branch",
+                "description": "Returns list of branch",
+                "operationId": "getbranchList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/branch/save": {
+            "post": {
+                "tags": [
+                    "branch"
+                ],
+                "summary": "Store new branch",
+                "description": "Returns branch data",
+                "operationId": "f745b3ecca193a34305042770b8ac8fa",
+                "parameters": [
+                    {
+                        "name": "branches_id",
+                        "in": "path",
+                        "description": "branch branches_id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "branchName",
+                        "in": "path",
+                        "description": "access name: you should give the access name to update it",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "slogan",
+                        "in": "path",
+                        "description": "access name: you should give the access name to update it",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "location",
+                        "in": "path",
+                        "description": "access name: you should give the access name to update it",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "phone",
+                        "in": "path",
+                        "description": "access name: you should give the access name to update it",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/branch/{id}": {
+            "get": {
+                "tags": [
+                    "branch"
+                ],
+                "summary": "Get branch information",
+                "description": "Returns branch data",
+                "operationId": "d29e3193bcfcb373b72800178cf894f4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "branch id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/branch/update/{id}": {
+            "put": {
+                "tags": [
+                    "branch"
+                ],
+                "summary": "Update existing branch",
+                "description": "Returns updated branch data",
+                "operationId": "f12ecf0cdef783b4fb9af3633bf12a4e",
+                "parameters": [
+                    {
+                        "name": "branches_id",
+                        "in": "path",
+                        "description": "branch branches_id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "branchName",
+                        "in": "path",
+                        "description": "access name: you should give the access name to update it",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "slogan",
+                        "in": "path",
+                        "description": "access name: you should give the access name to update it",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "location",
+                        "in": "path",
+                        "description": "access name: you should give the access name to update it",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "phone",
+                        "in": "path",
+                        "description": "access name: you should give the access name to update it",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/branch/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "branch"
+                ],
+                "summary": "Delete existing branch",
+                "description": "Deletes a record and returns no content",
+                "operationId": "768efcfe3c73b11c9dffa675a76ea0cd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "branch id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/company": {
+            "get": {
+                "tags": [
+                    "company"
+                ],
+                "summary": "Get list of company",
+                "description": "Returns list of company",
+                "operationId": "getcompanyList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/company/save": {
+            "post": {
+                "tags": [
+                    "company"
+                ],
+                "summary": "Store new company",
+                "description": "Returns company data",
+                "operationId": "6206d030a79faa6b8d0e6eccca62cc64",
+                "parameters": [
+                    {
+                        "name": "companies_id",
+                        "in": "path",
+                        "description": "company companies_id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "companyName",
+                        "in": "path",
+                        "description": "access name: you should give the access name to update it",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "slogan",
+                        "in": "path",
+                        "description": "access name: you should give the access name to update it",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "location",
+                        "in": "path",
+                        "description": "access name: you should give the access name to update it",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "phone",
+                        "in": "path",
+                        "description": "access name: you should give the access name to update it",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "description": "access name: you should give the access name to update it",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/company/{id}": {
+            "get": {
+                "tags": [
+                    "company"
+                ],
+                "summary": "Get company information",
+                "description": "Returns company data",
+                "operationId": "55258aead8260b0bde2576679ea16f9e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "company id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/company/update/{id}": {
+            "put": {
+                "tags": [
+                    "company"
+                ],
+                "summary": "Update existing company",
+                "description": "Returns updated company data",
+                "operationId": "4e9477173de82650899191cdbabebda2",
+                "parameters": [
+                    {
+                        "name": "companies_id",
+                        "in": "path",
+                        "description": "company companies_id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "companyName",
+                        "in": "path",
+                        "description": "access name: you should give the access name to update it",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "slogan",
+                        "in": "path",
+                        "description": "access name: you should give the access name to update it",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "location",
+                        "in": "path",
+                        "description": "access name: you should give the access name to update it",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "phone",
+                        "in": "path",
+                        "description": "access name: you should give the access name to update it",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/company/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "company"
+                ],
+                "summary": "Delete existing company",
+                "description": "Deletes a record and returns no content",
+                "operationId": "be7fdc82075cdca36dcefa41461fd235",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "company id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
                     }
                 }
             }

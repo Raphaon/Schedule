@@ -1,17 +1,29 @@
 <?php
 
-use App\Http\Controllers\AccessController;
+use App\Models\Branch;
+use App\Models\Images;
 use Illuminate\Http\Request;
+use App\Models\userGroupPermission;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AccessController;
+use App\Http\Controllers\ImagesController;
+use App\Http\Controllers\UserGroupController;
+use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Api\Auth\UserController as AuthUserController;
+<<<<<<< HEAD
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\UserGroupController;
 use App\Models\Images;
 use App\Models\userGroupPermission;
+=======
+use App\Http\Controllers\BranchController;
+use App\Http\Controllers\CompanyController;
+use App\Models\Company;
+>>>>>>> 670e663cedcde33c1b972f10e9dac2dede932377
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +58,23 @@ Route::controller(UserGroupController::class)->prefix('user-group')->group(funct
     Route::get('/','index');
     Route::get('/{id}','show');
     Route::put('update/{id}','update');
-    Route::delete('delete/{id}','delete');
+    Route::delete('delete/{id}','destroy');
+});
+
+Route::controller(BranchController::class)->prefix('branch')->group(function(){
+    Route::post('save','store');
+    Route::get('/','index');
+    Route::get('/{id}','show');
+    Route::put('update/{id}','update');
+    Route::delete('delete/{id}','destroy');
+});
+
+Route::controller(CompanyController::class)->prefix('company')->group(function(){
+    Route::post('save','store');
+    Route::get('/','index');
+    Route::get('/{id}','show');
+    Route::put('update/{id}','update');
+    Route::delete('delete/{id}','destroy');
 });
 
 Route::controller(PermissionsController::class)->prefix('permission')->group(function(){
@@ -54,7 +82,7 @@ Route::controller(PermissionsController::class)->prefix('permission')->group(fun
     Route::post('show/{id}','store');
     Route::get('/','index');
     Route::put('update/{id}','update');
-    Route::put('delete/{id}','delete');
+    Route::put('delete/{id}','destroy');
 });
 Route::controller(ImagesController::class)->prefix('image')->group(function(){
     Route::post('/upload','store_1');
@@ -74,10 +102,14 @@ Route::controller(AccessController::class)->middleware(['auth:sanctum'])->prefix
     Route::put('update/{id}','update');
     Route::delete('delete/{id}','delete');
 });
+
+Route::fallback(function () {
+    return response()->json(['erreur' => 'Ressource non trouvée.'], 404);
+});
+
 Route::middleware(['auth:sanctum'])->group(function(){
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
-
 
 });
